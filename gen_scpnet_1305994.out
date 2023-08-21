@@ -1,0 +1,10 @@
+generate_scpnet_output.py
+Namespace(config_path='config/semantickitti-multiscan.yaml')
+[256 256  32]
+Load model from: ./model_load_dir/iou37.5557_epoch3.pth
+matched parameter sets: 285, and no matched: 0
+./model_load_dir/
+multiscan: 0
+multiscan: 0
+Dataset w/ label rectification
+Dataset w/ label rectification

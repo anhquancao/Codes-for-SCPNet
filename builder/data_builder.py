@@ -16,6 +16,7 @@ def build(dataset_config,
           grid_size=[480, 360, 32],
           use_tta=False,
           use_multiscan=False,
+          generate=False,
           use_waymo=False):
     data_path = train_dataloader_config["data_path"]
     train_imageset = train_dataloader_config["imageset"]
@@ -143,6 +144,10 @@ def build(dataset_config,
                                                      collate_fn=collate_fn_BEV_tmp,
                                                      shuffle=val_dataloader_config["shuffle"],
                                                      num_workers=val_dataloader_config["num_workers"])
+    
+    if generate:
+        return train_dataset_loader, val_dataset_loader, train_pt_dataset, val_pt_dataset
+    
     if use_tta:
         return train_dataset_loader, val_dataset_loader, val_pt_dataset
     else:
