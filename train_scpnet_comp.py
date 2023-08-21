@@ -13,7 +13,8 @@ import torch.optim as optim
 from tqdm import tqdm
 
 # from utils.metric_util import per_class_iu, fast_hist_crop
-from dataloader.pc_dataset import get_SemKITTI_label_name, get_eval_mask, unpack
+from dataloader_rec.dataloader.pc_dataset import get_SemKITTI_label_name, get_eval_mask, unpack
+
 from builder import data_builder, model_builder, loss_builder
 from config.config import load_config_data
 
@@ -55,7 +56,8 @@ def main(args):
     unique_label_str = [SemKITTI_label_name[x] for x in unique_label + 1]
 
     my_model = model_builder.build(model_config)
-    model_load_path += '0.pth'
+    model_load_path += 'iou37.5557_epoch3.pth'
+    # model_load_path += '0.pth'
     model_save_path += ''
     if os.path.exists(model_load_path):
         print('Load model from: %s' % model_load_path)
@@ -99,8 +101,8 @@ def main(args):
         time.sleep(10)
         # lr_scheduler.step(epoch)
         for i_iter, (_, train_vox_label, train_grid, _, train_pt_fea, train_index, origin_len) in enumerate(train_dataset_loader):
-            
-            if global_iter % check_iter == 0 and epoch > 0:
+            # if global_iter % check_iter == 0 and epoch > 0:
+            if global_iter % check_iter == 0:
                 my_model.eval()
 
                 val_loss_list = []
@@ -110,8 +112,8 @@ def main(args):
                 else:
                     evaluator = iouEval(num_class, [])
                 with torch.no_grad():
-                    for i_iter_val, (_, val_vox_label, val_grid, _, val_pt_fea, val_index, origin_len) in enumerate(
-                            val_dataset_loader):
+                    for i_iter_val, (_, val_vox_label, val_grid, _, val_pt_fea, val_index, origin_len) in tqdm(enumerate(
+                            val_dataset_loader)):
 
                         val_pt_fea_ten = [torch.from_numpy(i).type(torch.FloatTensor).to(pytorch_device) for i in
                                         val_pt_fea]
@@ -213,6 +215,7 @@ if __name__ == '__main__':
     # Training settings
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('-y', '--config_path', default='config/semantickitti-multiscan.yaml')
+    # parser.add_argument('-y', '--config_path', default='config/semantickitti.yaml')
     args = parser.parse_args()
 
     print(' '.join(sys.argv))

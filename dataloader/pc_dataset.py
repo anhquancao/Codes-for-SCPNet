@@ -185,7 +185,8 @@ class SemKITTI_sk_multiscan(data.Dataset):
         self.times = []
         self.poses = []
 
-        for seq in range(0, 22):
+        # for seq in range(0, 22):
+        for seq in range(0, 11):
             seq_folder = join(self.data_path, str(seq).zfill(2))
 
             # Read Calib

@@ -149,7 +149,7 @@ class SemKITTI_sk_multiscan(data.Dataset):
         else:
             raise Exception('Split must be train/val/test')
 
-        multiscan = 4  # additional frames are fused with target-frame. Hence, multiscan+1 point clouds in total
+        multiscan = 0  # additional frames are fused with target-frame. Hence, multiscan+1 point clouds in total
         print('multiscan: %d' %multiscan)
         self.multiscan = multiscan
         self.im_idx = []
@@ -159,12 +159,18 @@ class SemKITTI_sk_multiscan(data.Dataset):
         self.poses = []
 
         self.load_calib_poses()
+        # for i_folder in split:
+        #     # velodyne path corresponding to voxel path
+        #     complete_path = os.path.join(data_path, str(i_folder).zfill(2), "voxels")
+        #     files = list(pathlib.Path(complete_path).glob('*.bin'))
+        #     for filename in files:
+        #         self.im_idx.append(str(filename).replace('voxels', 'velodyne'))
+        #     self.im_idx = []
         for i_folder in split:
-            # velodyne path corresponding to voxel path
-            complete_path = os.path.join(data_path, str(i_folder).zfill(2), "voxels")
-            files = list(pathlib.Path(complete_path).glob('*.bin'))
-            for filename in files:
-                self.im_idx.append(str(filename).replace('voxels', 'velodyne'))
+            files = absoluteFilePaths('/'.join([data_path, str(i_folder).zfill(2), 'velodyne']))
+            for file in files:
+                if int(file[-10:-4]) % 5 == 0:
+                    self.im_idx.append(file)
 
 
 
@@ -186,6 +192,7 @@ class SemKITTI_sk_multiscan(data.Dataset):
         self.poses = []
 
         for seq in range(0, 22):
+        # for seq in range(0, 11):
             seq_folder = join(self.data_path, str(seq).zfill(2))
 
             # Read Calib
@@ -266,6 +273,7 @@ class SemKITTI_sk_multiscan(data.Dataset):
 
     def __getitem__(self, index):
         raw_data = np.fromfile(self.im_idx[index], dtype=np.float32).reshape((-1, 4))  # point cloud
+        # single_scan_data = raw_data.copy()
         origin_len = len(raw_data)
 
         number_idx = int(self.im_idx[index][-10:-4])
@@ -281,7 +289,7 @@ class SemKITTI_sk_multiscan(data.Dataset):
             instance_label = instance_label & 0xFFFF  # delete high 16 digits binary
 
         for fuse_idx in range(self.multiscan):
-            plus_idx = fuse_idx + 1
+            plus_idx = (fuse_idx + 1)
             data_idx = number_idx + plus_idx
             path = self.im_idx[index][:-10]
             newpath2 = path + str(data_idx).zfill(6) + self.im_idx[index][-4:]
@@ -316,6 +324,7 @@ class SemKITTI_sk_multiscan(data.Dataset):
         voxel_label = voxel_label.reshape((256, 256, 32))
 
         data_tuple = (raw_data[:, :3], voxel_label.astype(np.uint8), instance_label)  # xyz, voxel labels
+        
 
         if self.return_ref:
             data_tuple += (raw_data[:, 3], origin_len)  # origin_len is used to indicate the length of target-scan

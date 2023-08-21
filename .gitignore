@@ -1,0 +1,4 @@
+__pycache__
+*core-python*
+out_scpnet/
+model_load_dir/

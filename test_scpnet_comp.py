@@ -12,7 +12,7 @@ import torch
 from tqdm import tqdm
 
 # from utils.metric_util import per_class_iu, fast_hist_crop
-from dataloader.pc_dataset import get_SemKITTI_label_name
+from dataloader_rec.dataloader.pc_dataset import get_SemKITTI_label_name
 from builder import data_builder, model_builder, loss_builder
 from config.config import load_config_data
 
@@ -56,7 +56,7 @@ def main(args):
     unique_label_str = [SemKITTI_label_name[x] for x in unique_label + 1]
 
     my_model = model_builder.build(model_config)
-    model_load_path += 'iou26.6891_epoch19.pth'
+    model_load_path += 'iou37.5557_epoch3.pth'
     if os.path.exists(model_load_path):
         print('Load model from: %s' % model_load_path)
         my_model = load_checkpoint(model_load_path, my_model)
@@ -96,7 +96,13 @@ def main(args):
                 with torch.no_grad():
                     for i_iter_test, (_, _, test_grid, _, test_pt_fea, test_index, origin_len) in enumerate(
                             test_dataset_loader):
-                        
+                        save_dir = test_pt_dataset.im_idx[test_index[0]]
+                        _,dir2 = save_dir.split('/sequences/',1)
+                        new_save_dir = output_path + '/sequences/' +dir2.replace('velodyne', 'predictions')[:-3]+'label'
+                        if os.path.exists(new_save_dir):
+                            pbar.update(1)
+                            continue
+                        print("not exist",new_save_dir)
                         test_pt_fea_ten = [torch.from_numpy(i).type(torch.FloatTensor).to(pytorch_device) for i in
                                           test_pt_fea]
                         test_grid_ten = [torch.from_numpy(i).to(pytorch_device) for i in test_grid]
@@ -118,9 +124,7 @@ def main(args):
                             pred = pred.astype(np.uint32)
                             final_preds = pred.astype(np.uint16)
                             
-                            save_dir = test_pt_dataset.im_idx[test_index[0]]
-                            _,dir2 = save_dir.split('/sequences/',1)
-                            new_save_dir = output_path + '/sequences/' +dir2.replace('velodyne', 'predictions')[:-3]+'label'
+                            
                             if not os.path.exists(os.path.dirname(new_save_dir)):
                                 try:
                                     os.makedirs(os.path.dirname(new_save_dir))

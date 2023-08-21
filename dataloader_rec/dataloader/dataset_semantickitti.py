@@ -42,15 +42,18 @@ class voxel_dataset(data.Dataset):
         self.max_volume_space = max_volume_space
         self.min_volume_space = min_volume_space
         self.use_every_i_data = 5
+        print("Dataset w/ label rectification")
 
     def __len__(self):
         'Denotes the total number of samples'
-        return len(self.point_cloud_dataset)//self.use_every_i_data
+        return len(self.point_cloud_dataset)
+        # return np.ceil(len(self.point_cloud_dataset)/self.use_every_i_data).astype(int)
+
 
     def __getitem__(self, index):
         'Generates one sample of data'
         
-        index *= self.use_every_i_data
+        # index *= self.use_every_i_data
         
         data = self.point_cloud_dataset[index]
         if len(data) == 3:
@@ -120,7 +123,7 @@ class voxel_dataset(data.Dataset):
         
         if (intervals == 0).any(): print("Zero interval!")
 
-        grid_ind = (np.floor((np.clip(xyz, min_bound, max_bound) - min_bound) / intervals)).astype(np.int)
+        grid_ind = (np.floor((np.clip(xyz, min_bound, max_bound) - min_bound) / intervals)).astype(int)
 
         # process voxel position
         dim_array = np.ones(len(self.grid_size) + 1, int)
@@ -133,8 +136,8 @@ class voxel_dataset(data.Dataset):
         # label_voxel_pair = label_voxel_pair[np.lexsort((grid_ind[:, 0], grid_ind[:, 1], grid_ind[:, 2])), :]
         # processed_label = nb_process_label(np.copy(processed_label), label_voxel_pair)
 
-        # processed_label = voxel_label  # voxel labels
-        processed_label = label_rectification(grid_ind, voxel_label.copy(), instance_label)
+        processed_label = voxel_label  # voxel labels
+        # processed_label = label_rectification(grid_ind, voxel_label.copy(), instance_label)
         
         ## uncomment to save label for visualization
         # torch.save(
@@ -337,7 +340,7 @@ class cylinder_dataset(data.Dataset):
         intervals = crop_range / (cur_grid_size - 1)
 
         if (intervals == 0).any(): print("Zero interval!")
-        grid_ind = (np.floor((np.clip(xyz_pol, min_bound, max_bound) - min_bound) / intervals)).astype(np.int)
+        grid_ind = (np.floor((np.clip(xyz_pol, min_bound, max_bound) - min_bound) / intervals)).astype(int)
 
         voxel_position = np.zeros(self.grid_size, dtype=np.float32)
         dim_array = np.ones(len(self.grid_size) + 1, int)
@@ -440,7 +443,7 @@ class polar_dataset(data.Dataset):
         intervals = crop_range / (cur_grid_size - 1)
 
         if (intervals == 0).any(): print("Zero interval!")
-        grid_ind = (np.floor((np.clip(xyz_pol, min_bound, max_bound) - min_bound) / intervals)).astype(np.int)
+        grid_ind = (np.floor((np.clip(xyz_pol, min_bound, max_bound) - min_bound) / intervals)).astype(int)
 
         voxel_position = np.zeros(self.grid_size, dtype=np.float32)
         dim_array = np.ones(len(self.grid_size) + 1, int)
@@ -491,7 +494,7 @@ def nb_process_label(processed_label, sorted_label_voxel_pair):
 
 def collate_fn_BEV(data):
     data2stack = np.stack([d[0] for d in data]).astype(np.float32)
-    label2stack = np.stack([d[1] for d in data]).astype(np.int)
+    label2stack = np.stack([d[1] for d in data]).astype(int)
     grid_ind_stack = [d[2] for d in data]
     point_label = [d[3] for d in data]
     xyz = [d[4] for d in data]
@@ -505,7 +508,7 @@ def collate_fn_BEV(data):
         for da2 in da1:
             voxel_label.append(da2[1])
 
-    voxel_label = np.stack(voxel_label).astype(np.int)
+    voxel_label = np.stack(voxel_label).astype(int)
 
     grid_ind_stack = []
     for da1 in data:
@@ -530,7 +533,7 @@ def collate_fn_BEV(data):
 
 '''def collate_fn_BEV_test_old(data):
     data2stack = np.stack([d[0] for d in data]).astype(np.float32)
-    label2stack = np.stack([d[1] for d in data]).astype(np.int)
+    label2stack = np.stack([d[1] for d in data]).astype(int)
     grid_ind_stack = [d[2] for d in data]
     point_label = [d[3] for d in data]
     xyz = [d[4] for d in data]
@@ -546,7 +549,7 @@ def collate_fn_BEV_tta(data):
         for da2 in da1:
             voxel_label.append(da2[1])
 
-    #voxel_label.astype(np.int)
+    #voxel_label.astype(int)
 
     grid_ind_stack = []
     for da1 in data:
@@ -576,7 +579,7 @@ def collate_fn_BEV_tta(data):
 
 def collate_fn_BEV_ms(data):
     data2stack = np.stack([d[0] for d in data]).astype(np.float32)
-    label2stack = np.stack([d[1] for d in data]).astype(np.int)
+    label2stack = np.stack([d[1] for d in data]).astype(int)
     grid_ind_stack = [d[2] for d in data]
     point_label = [d[3] for d in data]
     xyz = [d[4] for d in data]
@@ -588,7 +591,7 @@ def collate_fn_BEV_ms(data):
 
 def collate_fn_BEV_ms_tta(data):
     data2stack = np.stack([d[0] for d in data]).astype(np.float32)
-    label2stack = np.stack([d[1] for d in data]).astype(np.int)
+    label2stack = np.stack([d[1] for d in data]).astype(int)
     grid_ind_stack = [d[2] for d in data]
     point_label = [d[3] for d in data]
     xyz = [d[4] for d in data]
@@ -605,7 +608,7 @@ def collate_fn_BEV_ms_tta(data):
 #         for da2 in da1:
 #             voxel_label.append(da2[1])
 #
-#     #voxel_label.astype(np.int)
+#     #voxel_label.astype(int)
 #
 #     grid_ind_stack = []
 #     for da1 in data:
