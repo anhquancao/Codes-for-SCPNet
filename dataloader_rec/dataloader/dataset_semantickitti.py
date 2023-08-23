@@ -136,8 +136,8 @@ class voxel_dataset(data.Dataset):
         # label_voxel_pair = label_voxel_pair[np.lexsort((grid_ind[:, 0], grid_ind[:, 1], grid_ind[:, 2])), :]
         # processed_label = nb_process_label(np.copy(processed_label), label_voxel_pair)
 
-        # processed_label = voxel_label  # voxel labels
-        processed_label = label_rectification(grid_ind, voxel_label.copy(), instance_label)
+        processed_label = voxel_label  # voxel labels
+        # processed_label = label_rectification(grid_ind, voxel_label.copy(), instance_label)
         
         ## uncomment to save label for visualization
         # torch.save(
