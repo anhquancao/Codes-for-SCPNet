@@ -13,11 +13,11 @@
 
 #SBATCH --gres=gpu:1
 
-#SBATCH -C v100-32g
-#SBATCH --cpus-per-task=10
+##SBATCH -C v100-32g
+##SBATCH --cpus-per-task=10
 
-##SBATCH --cpus-per-task=3
-##SBATCH --partition=gpu_p2
+#SBATCH --cpus-per-task=3
+#SBATCH --partition=gpu_p2
 
 
 srun python train_scpnet_comp.py
