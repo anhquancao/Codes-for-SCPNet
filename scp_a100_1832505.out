@@ -1,0 +1,376 @@
+train_scpnet_comp.py
+Namespace(config_path='config/semantickitti-multiscan.yaml')
+[256 256  32]
+Load model from: ./model_load_dir/iou21.0791_epoch11.pth
+matched parameter sets: 285, and no matched: 0
+./model_load_dir/
+multiscan: 0
+multiscan: 0
+Dataset w/ label rectification
+Dataset w/ label rectification
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.439
+IoU class 2 [bicycle] = 0.129
+IoU class 3 [motorcycle] = 0.067
+IoU class 4 [truck] = 0.154
+IoU class 5 [other-vehicle] = 0.148
+IoU class 6 [person] = 0.063
+IoU class 7 [bicyclist] = 0.021
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.634
+IoU class 10 [parking] = 0.225
+IoU class 11 [sidewalk] = 0.405
+IoU class 12 [other-ground] = 0.002
+IoU class 13 [building] = 0.299
+IoU class 14 [fence] = 0.165
+IoU class 15 [vegetation] = 0.354
+IoU class 16 [trunk] = 0.245
+IoU class 17 [terrain] = 0.446
+IoU class 18 [pole] = 0.171
+IoU class 19 [traffic-sign] = 0.036
+Current val completion iou is 0.472
+Current val miou is 21.079 while the best val miou is 21.079
+Current val loss is 3.025
+epoch 11 iter     0, loss: 3.167
+
+epoch 11 iter  1000, loss: 3.055
+
+epoch 11 iter  1916, loss: 3.063
+
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.442
+IoU class 2 [bicycle] = 0.064
+IoU class 3 [motorcycle] = 0.069
+IoU class 4 [truck] = 0.202
+IoU class 5 [other-vehicle] = 0.129
+IoU class 6 [person] = 0.074
+IoU class 7 [bicyclist] = 0.000
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.627
+IoU class 10 [parking] = 0.205
+IoU class 11 [sidewalk] = 0.392
+IoU class 12 [other-ground] = 0.014
+IoU class 13 [building] = 0.284
+IoU class 14 [fence] = 0.159
+IoU class 15 [vegetation] = 0.330
+IoU class 16 [trunk] = 0.244
+IoU class 17 [terrain] = 0.384
+IoU class 18 [pole] = 0.207
+IoU class 19 [traffic-sign] = 0.055
+Current val completion iou is 0.456
+Current val miou is 20.419 while the best val miou is 21.079
+Current val loss is 3.036
+epoch 12 iter    83, loss: 3.056
+
+epoch 12 iter  1083, loss: 3.064
+
+epoch 12 iter  1916, loss: 3.064
+
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.418
+IoU class 2 [bicycle] = 0.087
+IoU class 3 [motorcycle] = 0.065
+IoU class 4 [truck] = 0.182
+IoU class 5 [other-vehicle] = 0.102
+IoU class 6 [person] = 0.062
+IoU class 7 [bicyclist] = 0.018
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.635
+IoU class 10 [parking] = 0.213
+IoU class 11 [sidewalk] = 0.401
+IoU class 12 [other-ground] = 0.003
+IoU class 13 [building] = 0.273
+IoU class 14 [fence] = 0.165
+IoU class 15 [vegetation] = 0.305
+IoU class 16 [trunk] = 0.239
+IoU class 17 [terrain] = 0.430
+IoU class 18 [pole] = 0.222
+IoU class 19 [traffic-sign] = 0.046
+Current val completion iou is 0.439
+Current val miou is 20.350 while the best val miou is 21.079
+Current val loss is 3.038
+epoch 13 iter   166, loss: 3.064
+
+epoch 13 iter  1166, loss: 3.061
+
+epoch 13 iter  1916, loss: 3.063
+
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.432
+IoU class 2 [bicycle] = 0.114
+IoU class 3 [motorcycle] = 0.061
+IoU class 4 [truck] = 0.188
+IoU class 5 [other-vehicle] = 0.145
+IoU class 6 [person] = 0.054
+IoU class 7 [bicyclist] = 0.028
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.639
+IoU class 10 [parking] = 0.223
+IoU class 11 [sidewalk] = 0.402
+IoU class 12 [other-ground] = 0.012
+IoU class 13 [building] = 0.283
+IoU class 14 [fence] = 0.175
+IoU class 15 [vegetation] = 0.334
+IoU class 16 [trunk] = 0.241
+IoU class 17 [terrain] = 0.325
+IoU class 18 [pole] = 0.239
+IoU class 19 [traffic-sign] = 0.059
+Current val completion iou is 0.445
+Current val miou is 20.809 while the best val miou is 21.079
+Current val loss is 3.052
+epoch 14 iter   249, loss: 3.067
+
+epoch 14 iter  1249, loss: 3.063
+
+epoch 14 iter  1916, loss: 3.065
+
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.452
+IoU class 2 [bicycle] = 0.135
+IoU class 3 [motorcycle] = 0.073
+IoU class 4 [truck] = 0.230
+IoU class 5 [other-vehicle] = 0.123
+IoU class 6 [person] = 0.064
+IoU class 7 [bicyclist] = 0.019
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.644
+IoU class 10 [parking] = 0.206
+IoU class 11 [sidewalk] = 0.413
+IoU class 12 [other-ground] = 0.015
+IoU class 13 [building] = 0.302
+IoU class 14 [fence] = 0.158
+IoU class 15 [vegetation] = 0.358
+IoU class 16 [trunk] = 0.242
+IoU class 17 [terrain] = 0.396
+IoU class 18 [pole] = 0.208
+IoU class 19 [traffic-sign] = 0.047
+Current val completion iou is 0.465
+Current val miou is 21.501 while the best val miou is 21.501
+Current val loss is 3.052
+epoch 15 iter   332, loss: 3.057
+
+epoch 15 iter  1332, loss: 3.061
+
+epoch 15 iter  1916, loss: 3.060
+
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.434
+IoU class 2 [bicycle] = 0.119
+IoU class 3 [motorcycle] = 0.090
+IoU class 4 [truck] = 0.149
+IoU class 5 [other-vehicle] = 0.077
+IoU class 6 [person] = 0.064
+IoU class 7 [bicyclist] = 0.015
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.647
+IoU class 10 [parking] = 0.212
+IoU class 11 [sidewalk] = 0.416
+IoU class 12 [other-ground] = 0.007
+IoU class 13 [building] = 0.287
+IoU class 14 [fence] = 0.184
+IoU class 15 [vegetation] = 0.332
+IoU class 16 [trunk] = 0.255
+IoU class 17 [terrain] = 0.399
+IoU class 18 [pole] = 0.195
+IoU class 19 [traffic-sign] = 0.034
+Current val completion iou is 0.453
+Current val miou is 20.607 while the best val miou is 21.501
+Current val loss is 3.057
+epoch 16 iter   415, loss: 3.062
+
+epoch 16 iter  1415, loss: 3.064
+
+epoch 16 iter  1916, loss: 3.063
+
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.438
+IoU class 2 [bicycle] = 0.070
+IoU class 3 [motorcycle] = 0.061
+IoU class 4 [truck] = 0.181
+IoU class 5 [other-vehicle] = 0.078
+IoU class 6 [person] = 0.057
+IoU class 7 [bicyclist] = 0.020
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.642
+IoU class 10 [parking] = 0.182
+IoU class 11 [sidewalk] = 0.406
+IoU class 12 [other-ground] = 0.002
+IoU class 13 [building] = 0.251
+IoU class 14 [fence] = 0.179
+IoU class 15 [vegetation] = 0.354
+IoU class 16 [trunk] = 0.241
+IoU class 17 [terrain] = 0.359
+IoU class 18 [pole] = 0.214
+IoU class 19 [traffic-sign] = 0.049
+Current val completion iou is 0.457
+Current val miou is 19.914 while the best val miou is 21.501
+Current val loss is 3.062
+epoch 17 iter   498, loss: 3.065
+
+epoch 17 iter  1498, loss: 3.067
+
+epoch 17 iter  1916, loss: 3.066
+
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.451
+IoU class 2 [bicycle] = 0.126
+IoU class 3 [motorcycle] = 0.089
+IoU class 4 [truck] = 0.141
+IoU class 5 [other-vehicle] = 0.069
+IoU class 6 [person] = 0.075
+IoU class 7 [bicyclist] = 0.022
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.621
+IoU class 10 [parking] = 0.205
+IoU class 11 [sidewalk] = 0.403
+IoU class 12 [other-ground] = 0.013
+IoU class 13 [building] = 0.319
+IoU class 14 [fence] = 0.166
+IoU class 15 [vegetation] = 0.376
+IoU class 16 [trunk] = 0.232
+IoU class 17 [terrain] = 0.437
+IoU class 18 [pole] = 0.226
+IoU class 19 [traffic-sign] = 0.068
+Current val completion iou is 0.475
+Current val miou is 21.258 while the best val miou is 21.501
+Current val loss is 3.065
+epoch 18 iter   581, loss: 3.061
+
+epoch 18 iter  1581, loss: 3.060
+
+epoch 18 iter  1916, loss: 3.060
+
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.447
+IoU class 2 [bicycle] = 0.053
+IoU class 3 [motorcycle] = 0.029
+IoU class 4 [truck] = 0.186
+IoU class 5 [other-vehicle] = 0.060
+IoU class 6 [person] = 0.068
+IoU class 7 [bicyclist] = 0.013
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.649
+IoU class 10 [parking] = 0.208
+IoU class 11 [sidewalk] = 0.407
+IoU class 12 [other-ground] = 0.010
+IoU class 13 [building] = 0.290
+IoU class 14 [fence] = 0.172
+IoU class 15 [vegetation] = 0.324
+IoU class 16 [trunk] = 0.239
+IoU class 17 [terrain] = 0.414
+IoU class 18 [pole] = 0.204
+IoU class 19 [traffic-sign] = 0.042
+Current val completion iou is 0.454
+Current val miou is 20.083 while the best val miou is 21.501
+Current val loss is 3.075
+epoch 19 iter   664, loss: 3.060
+
+epoch 19 iter  1664, loss: 3.059
+
+epoch 19 iter  1916, loss: 3.060
+
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.444
+IoU class 2 [bicycle] = 0.081
+IoU class 3 [motorcycle] = 0.082
+IoU class 4 [truck] = 0.225
+IoU class 5 [other-vehicle] = 0.054
+IoU class 6 [person] = 0.072
+IoU class 7 [bicyclist] = 0.024
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.636
+IoU class 10 [parking] = 0.241
+IoU class 11 [sidewalk] = 0.414
+IoU class 12 [other-ground] = 0.003
+IoU class 13 [building] = 0.300
+IoU class 14 [fence] = 0.151
+IoU class 15 [vegetation] = 0.335
+IoU class 16 [trunk] = 0.238
+IoU class 17 [terrain] = 0.462
+IoU class 18 [pole] = 0.234
+IoU class 19 [traffic-sign] = 0.047
+Current val completion iou is 0.459
+Current val miou is 21.276 while the best val miou is 21.501
+Current val loss is 3.053
+epoch 20 iter   747, loss: 3.071
+
+epoch 20 iter  1747, loss: 3.065
+
+epoch 20 iter  1916, loss: 3.063
+
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.449
+IoU class 2 [bicycle] = 0.087
+IoU class 3 [motorcycle] = 0.076
+IoU class 4 [truck] = 0.128
+IoU class 5 [other-vehicle] = 0.106
+IoU class 6 [person] = 0.054
+IoU class 7 [bicyclist] = 0.017
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.641
+IoU class 10 [parking] = 0.179
+IoU class 11 [sidewalk] = 0.406
+IoU class 12 [other-ground] = 0.007
+IoU class 13 [building] = 0.281
+IoU class 14 [fence] = 0.148
+IoU class 15 [vegetation] = 0.297
+IoU class 16 [trunk] = 0.221
+IoU class 17 [terrain] = 0.365
+IoU class 18 [pole] = 0.224
+IoU class 19 [traffic-sign] = 0.066
+Current val completion iou is 0.421
+Current val miou is 19.742 while the best val miou is 21.501
+Current val loss is 3.061
+epoch 21 iter   830, loss: 3.068
+
+epoch 21 iter  1830, loss: 3.063
+
+epoch 21 iter  1916, loss: 3.063
+
+[IOU EVAL] IGNORE:  []
+[IOU EVAL] INCLUDE:  [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19]
+Validation per class iou: 
+IoU class 1 [car] = 0.440
+IoU class 2 [bicycle] = 0.119
+IoU class 3 [motorcycle] = 0.090
+IoU class 4 [truck] = 0.201
+IoU class 5 [other-vehicle] = 0.080
+IoU class 6 [person] = 0.025
+IoU class 7 [bicyclist] = 0.031
+IoU class 8 [motorcyclist] = 0.000
+IoU class 9 [road] = 0.642
+IoU class 10 [parking] = 0.210
+IoU class 11 [sidewalk] = 0.411
+IoU class 12 [other-ground] = 0.005
+IoU class 13 [building] = 0.312
+IoU class 14 [fence] = 0.175
+IoU class 15 [vegetation] = 0.365
+IoU class 16 [trunk] = 0.209
+IoU class 17 [terrain] = 0.365
+IoU class 18 [pole] = 0.225
+IoU class 19 [traffic-sign] = 0.053
+Current val completion iou is 0.474
+Current val miou is 20.843 while the best val miou is 21.501
+Current val loss is 3.073

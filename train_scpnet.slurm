@@ -4,8 +4,8 @@
 #SBATCH -A trg@v100
 #SBATCH --ntasks-per-node=1
 
-#SBATCH --time=50:59:00
-#SBATCH --qos=qos_gpu-t4
+#SBATCH --time=20:00:00
+##SBATCH --qos=qos_gpu-t4
 
 #SBATCH --output=scpnet_%j.out
 #SBATCH --error=scpnet_%j.err

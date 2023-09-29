@@ -58,7 +58,7 @@ def main(args):
     unique_label_str = [SemKITTI_label_name[x] for x in unique_label + 1]
 
     my_model = model_builder.build(model_config)
-    model_load_path += 'iou37.5557_epoch3.pth'
+    model_load_path += 'iou21.5012_epoch15.pth'
     # model_load_path += '0.pth'
     model_save_path += ''
     if os.path.exists(model_load_path):
@@ -101,7 +101,7 @@ def main(args):
     dataloaders = [train_dataset_loader, val_dataset_loader]
     datasets = [train_pt_dataset, val_pt_dataset]
     
-    output_path = "/gpfsscratch/rech/kvd/uyl37fq/monoscene_preprocess/kitti/scpnet_output"
+    output_path = "/gpfsscratch/rech/kvd/uyl37fq/monoscene_preprocess/kitti/scpnet_output_retrain"
     my_model.eval()
     for i in range(2):
         dataset_loader = dataloaders[i]
@@ -114,6 +114,12 @@ def main(args):
 
             assert val_batch_size == 1
             for bat in range(val_batch_size):
+                save_dir = pt_dataset.im_idx[val_index[0]]
+                _,dir2 = save_dir.split('/sequences/',1)
+                new_save_dir = output_path + '/sequences/' +dir2.replace('velodyne', 'predictions')[:-3]+'npy'
+                if os.path.exists(new_save_dir):
+                    pbar.update(1)
+                    continue
 
                 val_label_tensor = val_vox_label[bat,:].type(torch.LongTensor).to(pytorch_device)
                 val_label_tensor = torch.unsqueeze(val_label_tensor, 0)
@@ -124,11 +130,10 @@ def main(args):
                 predict_labels = predict_labels.cpu().detach().numpy()
                 predict_labels = np.squeeze(predict_labels).astype(np.uint8)
                 
-                save_dir = pt_dataset.im_idx[val_index[0]]
-                _,dir2 = save_dir.split('/sequences/',1)
-                new_save_dir = output_path + '/sequences/' +dir2.replace('velodyne', 'predictions')[:-3]+'npy'
+                
                 
                 os.makedirs(os.path.dirname(new_save_dir), exist_ok=True)
+                
                 np.save(new_save_dir, predict_labels)
                 
                 # val_vox_label0 = val_vox_label[bat, :].cpu().detach().numpy()

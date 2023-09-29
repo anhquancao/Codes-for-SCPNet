@@ -8,6 +8,8 @@ import torch
 
 from dataloader_rec.dataloader.dataset_semantickitti import get_model_class, collate_fn_BEV, collate_fn_BEV_tta, collate_fn_BEV_ms, collate_fn_BEV_ms_tta
 from dataloader_rec.dataloader.pc_dataset import get_pc_model_class
+# from dataloader.dataset_semantickitti import get_model_class, collate_fn_BEV, collate_fn_BEV_tta, collate_fn_BEV_ms, collate_fn_BEV_ms_tta
+# from dataloader.pc_dataset import get_pc_model_class
 
 
 def build(dataset_config,

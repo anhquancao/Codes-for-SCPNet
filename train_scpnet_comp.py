@@ -27,6 +27,8 @@ import yaml
 warnings.filterwarnings("ignore")
 
 
+
+
 def main(args):
     pytorch_device = torch.device('cuda:0')
 
@@ -56,9 +58,10 @@ def main(args):
     unique_label_str = [SemKITTI_label_name[x] for x in unique_label + 1]
 
     my_model = model_builder.build(model_config)
-    model_load_path += 'iou37.5557_epoch3.pth'
+    # model_load_path += 'iou37.5557_epoch3.pth'
     # model_load_path += '0.pth'
-    model_save_path += ''
+    # model_load_path += "iou21.0791_epoch11.pth"
+    model_load_path += 'cyl_sem_1.5x_72_4.pt'
     if os.path.exists(model_load_path):
         print('Load model from: %s' % model_load_path)
         my_model = load_checkpoint(model_load_path, my_model)
@@ -84,7 +87,9 @@ def main(args):
 
     # training
     epoch = 0
+    # epoch = 11
     best_val_miou = 0
+    # best_val_miou = 21.0791
     my_model.train()
     global_iter = 0
     check_iter = train_hypers['eval_every_n_steps']
@@ -101,8 +106,8 @@ def main(args):
         time.sleep(10)
         # lr_scheduler.step(epoch)
         for i_iter, (_, train_vox_label, train_grid, _, train_pt_fea, train_index, origin_len) in enumerate(train_dataset_loader):
-            # if global_iter % check_iter == 0 and epoch > 0:
-            if global_iter % check_iter == 0:
+            if global_iter % check_iter == 0 and epoch > 0:
+            # if global_iter % check_iter == 0:
                 my_model.eval()
 
                 val_loss_list = []
@@ -169,8 +174,9 @@ def main(args):
                 if best_val_miou < val_miou:
                     best_val_miou = val_miou
                     # save model with best val miou for completion
-                    model_save_name = model_save_path + ('iou%.4f_epoch%d.pth' % (val_miou, epoch))
-                    torch.save(my_model.state_dict(), model_save_name)
+                model_save_name = model_save_path + ('iou%.4f_epoch%d.pth' % (val_miou, epoch))
+                torch.save(my_model.state_dict(), model_save_name)
+                    
 
                 print('Current val miou is %.3f while the best val miou is %.3f' %
                       (val_miou, best_val_miou))

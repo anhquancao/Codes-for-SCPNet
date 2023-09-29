@@ -90,7 +90,6 @@ def load_checkpoint(model_load_path, model):
             # assert my_model_dict[k].shape == value.shape
 
     print("matched parameter sets: {}, and no matched: {}".format(match_size, nomatch_size))
-
     my_model_dict.update(part_load)
     model.load_state_dict(my_model_dict)
     # model.load_state_dict(my_model_dict, strict=False)  # True
